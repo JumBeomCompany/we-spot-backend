@@ -14,7 +14,7 @@ public class Feed extends BaseEntity {
     @Id
     @Column(name = "f_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer feedId;
+    private Long feedId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "us_id")
@@ -27,7 +27,7 @@ public class Feed extends BaseEntity {
     private String feedContent;
 
     @Builder
-    private Feed(Integer feedId, User user, String feedTitle, String feedContent) {
+    private Feed(Long feedId, User user, String feedTitle, String feedContent) {
         this.feedId = feedId;
         this.user = user;
         this.feedTitle = feedTitle;

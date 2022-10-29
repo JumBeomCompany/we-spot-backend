@@ -1,5 +1,6 @@
 package com.example.wespotbackend.user;
 
+import com.example.wespotbackend.model.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,11 +9,11 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "Users")
-public class User {
+public class User extends BaseEntity {
     @Id
     @Column(name = "us_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "us_email")
     private String userEmail;
@@ -24,7 +25,7 @@ public class User {
     private String userPasswd;
 
     @Builder
-    private User(Integer userId, String userEmail, String userName, String userPasswd) {
+    private User(Long userId, String userEmail, String userName, String userPasswd) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userName = userName;

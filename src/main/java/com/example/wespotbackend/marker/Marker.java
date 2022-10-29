@@ -15,7 +15,7 @@ public class Marker extends BaseEntity {
     @Id
     @Column(name = "m_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer markerId;
+    private Long markerId;
 
     @OneToOne
     @JoinColumn(name = "f_id")
@@ -29,7 +29,7 @@ public class Marker extends BaseEntity {
     private MarkerLocation makerLocation;
 
     @Builder
-    public Marker(Integer markerId, Feed feed, User user, MarkerLocation makerLocation) {
+    public Marker(Long markerId, Feed feed, User user, MarkerLocation makerLocation) {
         this.markerId = markerId;
         this.feed = feed;
         this.user = user;
