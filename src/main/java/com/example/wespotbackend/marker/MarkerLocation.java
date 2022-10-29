@@ -1,4 +1,4 @@
-package com.example.wespotbackend.maker;
+package com.example.wespotbackend.marker;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.example.wespotbackend.maker;
+package com.example.wespotbackend.marker;
 
 import com.example.wespotbackend.feed.Feed;
 import com.example.wespotbackend.model.BaseEntity;

@@ -1,6 +1,6 @@
 package com.example.wespotbackend.marker_tag;
 
-import com.example.wespotbackend.maker.Marker;
+import com.example.wespotbackend.marker.Marker;
 import com.example.wespotbackend.tag.Tag;
 import lombok.Builder;
 import lombok.Getter;
