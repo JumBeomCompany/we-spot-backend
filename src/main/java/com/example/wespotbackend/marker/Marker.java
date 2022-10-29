@@ -19,7 +19,7 @@ public class Marker extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "f_id")
-    private Feed feedId;
+    private Feed feed;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "us_id")
@@ -29,9 +29,9 @@ public class Marker extends BaseEntity {
     private MarkerLocation makerLocation;
 
     @Builder
-    public Marker(Integer markerId, Feed feedId, User user, MarkerLocation makerLocation) {
+    public Marker(Integer markerId, Feed feed, User user, MarkerLocation makerLocation) {
         this.markerId = markerId;
-        this.feedId = feedId;
+        this.feed = feed;
         this.user = user;
         this.makerLocation = makerLocation;
     }
