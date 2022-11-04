@@ -13,21 +13,21 @@ import javax.persistence.*;
 @Table(name = "Marker_tag")
 public class MarkerTag extends BaseEntity {
     @Id
-    @Column(name = "mt_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long markerTagId;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "m_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "marker_id")
     private Marker marker;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "t_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "tag_id")
     private Tag tag;
 
     @Builder
-    private MarkerTag(Long markerTagId, Marker marker, Tag tag) {
-        this.markerTagId = markerTagId;
+    private MarkerTag(Long id, Marker marker, Tag tag) {
+        this.id = id;
         this.marker = marker;
         this.tag = tag;
     }

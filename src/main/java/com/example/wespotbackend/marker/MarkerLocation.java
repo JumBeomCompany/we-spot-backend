@@ -8,22 +8,22 @@ import javax.persistence.Embeddable;
 @Getter
 @Embeddable
 public class MarkerLocation {
-    @Column(name = "m_latitude")
-    private Float markerLatitude; // 위도, y축
+    @Column(name = "latitude")
+    private Double latitude; // 위도, y축
 
-    @Column(name = "m_longitude")
-    private Float markerLongitude; // 경도, x축
+    @Column(name = "longitude")
+    private Double longitude; // 경도, x축
 
-    private MarkerLocation(Float latitude, Float longitude) {
-        this.markerLatitude = latitude;
-        this.markerLongitude = longitude;
+    private MarkerLocation(Double latitude, Double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     protected MarkerLocation() {
         /* empty */
     }
 
-    public static MarkerLocation of(Float latitude, Float longitude) {
+    public static MarkerLocation of(Double latitude, Double longitude) {
         return new MarkerLocation(latitude, longitude);
     }
 }

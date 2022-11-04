@@ -11,17 +11,17 @@ import javax.persistence.*;
 @Table(name = "Tag")
 public class Tag extends BaseEntity {
     @Id
-    @Column(name = "t_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tagId;
+    private Long id;
 
-    @Column(name = "t_name")
-    private String tagName;
+    @Column(name = "name")
+    private String name;
 
     @Builder
-    private Tag(Long tagId, String tagName) {
-        this.tagId = tagId;
-        this.tagName = tagName;
+    private Tag(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
     protected Tag() {
