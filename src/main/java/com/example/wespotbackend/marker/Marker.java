@@ -13,24 +13,24 @@ import javax.persistence.*;
 @Table(name = "Marker")
 public class Marker extends BaseEntity {
     @Id
-    @Column(name = "m_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long markerId;
+    private Long id;
 
     @OneToOne
-    @JoinColumn(name = "f_id")
+    @JoinColumn(name = "feed_id")
     private Feed feed;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "us_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Embedded
     private MarkerLocation makerLocation;
 
     @Builder
-    public Marker(Long markerId, Feed feed, User user, MarkerLocation makerLocation) {
-        this.markerId = markerId;
+    public Marker(Long id, Feed feed, User user, MarkerLocation makerLocation) {
+        this.id = id;
         this.feed = feed;
         this.user = user;
         this.makerLocation = makerLocation;

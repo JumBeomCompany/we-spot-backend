@@ -1,35 +1,38 @@
 package com.example.wespotbackend.user;
 
+import com.example.wespotbackend.marker.Marker;
 import com.example.wespotbackend.model.BaseEntity;
 import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
 @Table(name = "Users")
 public class User extends BaseEntity {
     @Id
-    @Column(name = "us_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
-    @Column(name = "us_email")
-    private String userEmail;
+    @Column(name = "email")
+    private String email;
 
-    @Column(name = "us_name")
-    private String userName;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "us_passwd")
-    private String userPasswd;
+    @Column(name = "passward")
+    private String password;
 
     @Builder
-    private User(Long userId, String userEmail, String userName, String userPasswd) {
-        this.userId = userId;
-        this.userEmail = userEmail;
-        this.userName = userName;
-        this.userPasswd = userPasswd;
+    private User(Long id, String email, String name, String password) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.password = password;
     }
 
     protected User() {

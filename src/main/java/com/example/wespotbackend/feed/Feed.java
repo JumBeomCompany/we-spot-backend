@@ -12,26 +12,26 @@ import javax.persistence.*;
 @Table(name = "Feed")
 public class Feed extends BaseEntity {
     @Id
-    @Column(name = "f_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long feedId;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "us_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Column(name = "f_title")
-    private String feedTitle;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "f_content", columnDefinition = "LONGTEXT")
-    private String feedContent;
+    @Column(name = "content", columnDefinition = "LONGTEXT")
+    private String content;
 
     @Builder
-    private Feed(Long feedId, User user, String feedTitle, String feedContent) {
-        this.feedId = feedId;
+    private Feed(Long id, User user, String title, String content) {
+        this.id = id;
         this.user = user;
-        this.feedTitle = feedTitle;
-        this.feedContent = feedContent;
+        this.title = title;
+        this.content = content;
     }
 
     protected Feed() {
