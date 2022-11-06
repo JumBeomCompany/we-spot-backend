@@ -37,7 +37,6 @@ public class MarkerService {
                 .user(findUser)
                 .makerLocation(MarkerLocation.of(markerRequest.getLatitude(), markerRequest.getLongitude()))
                 .build();
-
         Marker savedMarker = markerRepository.save(newMarker);
 
         return MarkerResponse.builder()
