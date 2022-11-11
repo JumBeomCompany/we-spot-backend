@@ -7,6 +7,8 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import static com.example.wespotbackend.common.dto.ApiResult.*;
+
 
 @RestControllerAdvice
 public class RestControllerExceptionHandler {
@@ -21,7 +23,17 @@ public class RestControllerExceptionHandler {
                 ex.getMessage(), errorCode.getCode(), errorCode.getStatus()
         );
 
-        return ApiResult.failed(response);
+        return failed(response);
+    }
+
+    /**
+     * 애플리케이션 비즈니스 예외들
+     */
+    @ExceptionHandler(BusinessException.class)
+    protected ApiResult<Error> handleBusinessException(
+            final BusinessException ex) {
+        final Error response = Error.of(ex.getMessage(), ex.getErrorCode());
+        return failed(response);
     }
 
     /**
@@ -30,7 +42,7 @@ public class RestControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     protected ApiResult<Error> handleException(
             final Exception ex) {
-        return ApiResult.failed(Error.of(ex.getMessage(), "code", 500));
+        return failed(Error.of(ex.getMessage(), "code", 500));
     }
 }
 

@@ -21,5 +21,9 @@ public class Error {
     public static Error of(String message, String code, int status) {
         return new Error(message, code, status);
     }
+
+    public static Error of(String message, ErrorCode errorCode) {
+        return new Error(message, errorCode.getCode(), errorCode.getStatus());
+    }
 }
 

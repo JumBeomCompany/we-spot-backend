@@ -251,6 +251,7 @@ gradle-app.setting
 
 ### Custom ###
 **/resources/application*.yml
+**/resources/*.sql
 
 docker-compose.yml
 
