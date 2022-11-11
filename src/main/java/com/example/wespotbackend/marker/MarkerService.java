@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequiredArgsConstructor
 @Service
 public class MarkerService {
@@ -42,5 +45,15 @@ public class MarkerService {
         return MarkerResponse.builder()
                 .id(savedMarker.getId())
                 .build();
+    }
+
+    @Transactional(readOnly = true)
+    public List<MarkerResponse> getMarkers(Long userId) {
+        // 사용자가 등록한 마커들 조회
+        List<Marker> markers = markerRepository.findByUserId(userId);
+
+        return markers.stream()
+                .map(MarkerResponse::new)
+                .collect(Collectors.toList());
     }
 }
