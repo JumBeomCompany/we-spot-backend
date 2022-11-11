@@ -5,10 +5,9 @@ import com.example.wespotbackend.marker.MarkerService;
 import com.example.wespotbackend.marker.dto.MarkerRequest;
 import com.example.wespotbackend.marker.dto.MarkerResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.example.wespotbackend.common.dto.ApiResult.succeed;
 
@@ -28,5 +27,11 @@ public class MarkerController {
     public ApiResult<MarkerResponse> registerMarker(@RequestBody MarkerRequest request) {
         final MarkerResponse savedMarkerResponse = markerService.save(request);
         return succeed(savedMarkerResponse);
+    }
+
+    @GetMapping("/markers/{userId}")
+    public ApiResult<List<MarkerResponse>> getMarkers(@PathVariable Long userId) {
+        final List<MarkerResponse> markerResponses = markerService.getMarkers(userId);
+        return succeed(markerResponses);
     }
 }
