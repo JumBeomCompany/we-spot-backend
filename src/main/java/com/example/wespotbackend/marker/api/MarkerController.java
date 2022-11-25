@@ -30,6 +30,18 @@ public class MarkerController {
     }
 
     /**
+     * 마커 정보 수정 (피드)
+     * @param request MarkerRequest DTO
+     * @return MarkerResponse DTO
+     */
+    @PatchMapping("/marker/{markerId}")
+    public ApiResult<Boolean> modifyMarker(@PathVariable Long markerId, @RequestBody MarkerRequest request) {
+        final Boolean modifiedMarkerResponse = markerService.update(markerId, request);
+        return succeed(modifiedMarkerResponse);
+    }
+
+
+    /**
      * 사용자별 마커 조회
      * @param userId 사용자 고유 id
      * @return MarkerResponse DTO List

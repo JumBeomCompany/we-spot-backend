@@ -37,4 +37,9 @@ public class Feed extends BaseEntity {
     protected Feed() {
         /* empty */
     }
+
+    public void updateFeed(Feed modifiedFeed) {
+        this.title = modifiedFeed.getTitle();
+        this.content = modifiedFeed.getContent();
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.wespotbackend.marker;
 
+import com.example.wespotbackend.common.exception.NotExistsFeedException;
 import com.example.wespotbackend.common.exception.NotExistsMarkerException;
 import com.example.wespotbackend.common.exception.NotExistsUserException;
 import com.example.wespotbackend.feed.Feed;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.crypto.MarshalException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,6 +48,25 @@ public class MarkerService {
         return buildMarkerResponse(savedMarker);
     }
 
+    @Transactional
+    public Boolean update(Long markerId, MarkerRequest markerRequest) {
+        // 1. 사용자 조회
+        User findUser = userRepository.findById(markerRequest.getUserId()).orElseThrow(NotExistsUserException::new);
+
+        // 2. 피드 정보 조회 및 수정
+        Marker findMarker = markerRepository.findById(markerId).orElseThrow(NotExistsMarkerException::new);
+        Feed findFeed = findMarker.getFeed();
+
+        Feed modifiedFeed = Feed.builder()
+                        .user(findUser)
+                        .title(markerRequest.getFeedTitle())
+                        .content(markerRequest.getFeedContent())
+                        .build();
+        findFeed.updateFeed(modifiedFeed);
+
+        return Boolean.TRUE;
+    }
+
     @Transactional(readOnly = true)
     public List<MarkerResponse> getMarkers(Long userId) {
         // 사용자가 등록한 마커들 조회
@@ -73,6 +94,8 @@ public class MarkerService {
                 .id(marker.getId())
                 .latitude(marker.getMakerLocation().getLatitude())
                 .longitude(marker.getMakerLocation().getLongitude())
+                .feedTitle(marker.getFeed().getTitle())
+                .feedContent(marker.getFeed().getContent())
                 .build();
     }
 }

@@ -16,16 +16,24 @@ public class MarkerResponse {
 
     private Double longitude;
 
+    private String feedTitle;
+
+    private String feedContent;
+
     @Builder
-    private MarkerResponse(Long id, Double latitude, Double longitude) {
+    private MarkerResponse(Long id, Double latitude, Double longitude, String feedTitle, String feedContent) {
         this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.feedTitle = feedTitle;
+        this.feedContent = feedContent;
     }
 
     public MarkerResponse(Marker marker) {
         this.id = marker.getId();
         this.latitude = marker.getMakerLocation().getLatitude();
         this.longitude = marker.getMakerLocation().getLongitude();
+        this.feedTitle = marker.getFeed().getTitle();
+        this.feedContent = marker.getFeed().getContent();
     }
 }
