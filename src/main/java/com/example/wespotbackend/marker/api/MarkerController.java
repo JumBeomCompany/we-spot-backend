@@ -29,9 +29,25 @@ public class MarkerController {
         return succeed(savedMarkerResponse);
     }
 
-    @GetMapping("/markers/{userId}")
-    public ApiResult<List<MarkerResponse>> getMarkers(@PathVariable Long userId) {
+    /**
+     * 사용자별 마커 조회
+     * @param userId 사용자 고유 id
+     * @return MarkerResponse DTO List
+     */
+    @GetMapping("/markers")
+    public ApiResult<List<MarkerResponse>> getMarkers(@RequestParam Long userId) {
         final List<MarkerResponse> markerResponses = markerService.getMarkers(userId);
         return succeed(markerResponses);
+    }
+
+    /**
+     * 마커 단건 조회
+     * @param markerId 마커 고유 id
+     * @return MarkerResponse DTO
+     */
+    @GetMapping("/markers/{markerId}")
+    public ApiResult<MarkerResponse> getMarker(@PathVariable Long markerId) {
+        final MarkerResponse markerResponse = markerService.getMarker(markerId);
+        return succeed(markerResponse);
     }
 }

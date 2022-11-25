@@ -3,13 +3,14 @@ package com.example.wespotbackend.common.exception;
 import com.example.wespotbackend.common.dto.ApiResult;
 import com.example.wespotbackend.common.dto.Error;
 import com.example.wespotbackend.common.dto.ErrorCode;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import static com.example.wespotbackend.common.dto.ApiResult.*;
 
-
+@Slf4j
 @RestControllerAdvice
 public class RestControllerExceptionHandler {
     /**
@@ -42,6 +43,7 @@ public class RestControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     protected ApiResult<Error> handleException(
             final Exception ex) {
+        log.error(ex.getMessage());
         return failed(Error.of(ex.getMessage(), "code", 500));
     }
 }

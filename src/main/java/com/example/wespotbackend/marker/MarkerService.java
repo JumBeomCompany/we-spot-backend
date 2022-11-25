@@ -1,5 +1,6 @@
 package com.example.wespotbackend.marker;
 
+import com.example.wespotbackend.common.exception.NotExistsMarkerException;
 import com.example.wespotbackend.common.exception.NotExistsUserException;
 import com.example.wespotbackend.feed.Feed;
 import com.example.wespotbackend.feed.FeedRepository;
@@ -42,9 +43,7 @@ public class MarkerService {
                 .build();
         Marker savedMarker = markerRepository.save(newMarker);
 
-        return MarkerResponse.builder()
-                .id(savedMarker.getId())
-                .build();
+        return buildMarkerResponse(savedMarker);
     }
 
     @Transactional(readOnly = true)
@@ -53,7 +52,27 @@ public class MarkerService {
         List<Marker> markers = markerRepository.findByUserId(userId);
 
         return markers.stream()
-                .map(MarkerResponse::new)
+                .map(this::buildMarkerResponse)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public MarkerResponse getMarker(Long markerId) {
+        Marker findMarker = markerRepository.findById(markerId).orElseThrow(NotExistsMarkerException::new);
+
+        return buildMarkerResponse(findMarker);
+    }
+
+    /**
+     * Build for MarkerResponse DTO
+     * @param marker Marker Entity
+     * @return MarkerResponse DTO
+     */
+    private MarkerResponse buildMarkerResponse(Marker marker) {
+        return MarkerResponse.builder()
+                .id(marker.getId())
+                .latitude(marker.getMakerLocation().getLatitude())
+                .longitude(marker.getMakerLocation().getLongitude())
+                .build();
     }
 }
