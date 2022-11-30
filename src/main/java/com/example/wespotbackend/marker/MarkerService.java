@@ -67,6 +67,17 @@ public class MarkerService {
         return Boolean.TRUE;
     }
 
+    @Transactional
+    public Boolean delete(Long markerId) {
+        Marker deleteMarker = markerRepository.findById(markerId).orElseThrow(NotExistsMarkerException::new);
+        Feed deleteFeed = deleteMarker.getFeed();
+
+        markerRepository.deleteById(deleteMarker.getId()); // referenced table
+        feedRepository.deleteById(deleteFeed.getId());
+
+        return Boolean.TRUE;
+    }
+
     @Transactional(readOnly = true)
     public List<MarkerResponse> getMarkers(Long userId) {
         // 사용자가 등록한 마커들 조회

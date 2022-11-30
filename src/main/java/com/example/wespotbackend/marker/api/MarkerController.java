@@ -31,13 +31,25 @@ public class MarkerController {
 
     /**
      * 마커 정보 수정 (피드)
+     * @param markerId 마커 고유 아이디
      * @param request MarkerRequest DTO
-     * @return MarkerResponse DTO
+     * @return Boolean
      */
     @PatchMapping("/marker/{markerId}")
     public ApiResult<Boolean> modifyMarker(@PathVariable Long markerId, @RequestBody MarkerRequest request) {
         final Boolean modifiedMarkerResponse = markerService.update(markerId, request);
         return succeed(modifiedMarkerResponse);
+    }
+
+    /**
+     * 마커 삭제 (피드)
+     * @param markerId 마커 고유 아이디
+     * @return Boolean
+     */
+    @DeleteMapping("/marker/{markerId}")
+    public ApiResult<Boolean> deleteMarker(@PathVariable Long markerId) {
+        final Boolean deletedMarkerResponse = markerService.delete(markerId);
+        return succeed(deletedMarkerResponse);
     }
 
 
