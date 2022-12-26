@@ -23,7 +23,7 @@ public class MarkerServiceTest {
     private UserRepository userRepository;
 
     @Autowired
-    private FeedRepository feedRepository;
+    private FeedRepository FeedRepository;
 
     private User user;
     private Feed feed;

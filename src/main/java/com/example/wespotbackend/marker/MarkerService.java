@@ -1,6 +1,5 @@
 package com.example.wespotbackend.marker;
 
-import com.example.wespotbackend.common.exception.NotExistsFeedException;
 import com.example.wespotbackend.common.exception.NotExistsMarkerException;
 import com.example.wespotbackend.common.exception.NotExistsUserException;
 import com.example.wespotbackend.feed.Feed;
@@ -13,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.crypto.MarshalException;
 import java.util.List;
 import java.util.stream.Collectors;
 

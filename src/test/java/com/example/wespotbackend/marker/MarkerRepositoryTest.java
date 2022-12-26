@@ -21,7 +21,7 @@ class MarkerRepositoryTest {
     private MarkerRepository markerRepository;
 
     @Autowired
-    private FeedRepository feedRepository;
+    private FeedRepository FeedRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -42,7 +42,7 @@ class MarkerRepositoryTest {
                 .user(getUser)
                 .title("title")
                 .build();
-        feedRepository.save(feed);
+        FeedRepository.save(feed);
     }
 
     @Test
