@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -26,13 +26,13 @@ public class FeedResponse {
 
     private String content;
 
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
-    private LocalDate modifiedAt;
+    private LocalDateTime modifiedAt;
 
     @QueryProjection
     @Builder
-    public FeedResponse(Long id, UserResponse userResponse, String title, String content, LocalDate createdAt, LocalDate modifiedAt) {
+    public FeedResponse(Long id, UserResponse userResponse, String title, String content, LocalDateTime createdAt, LocalDateTime modifiedAt) {
         this.id = id;
         this.userResponse = userResponse;
         this.title = title;
