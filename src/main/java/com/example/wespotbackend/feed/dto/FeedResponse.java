@@ -40,14 +40,4 @@ public class FeedResponse {
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
-
-//    @QueryProjection
-//    @Builder
-//    public FeedResponse(Long id, String title, String content, LocalDate createdAt, LocalDate modifiedAt) {
-//        this.id = id;
-//        this.title = title;
-//        this.content = content;
-//        this.createdAt = createdAt;
-//        this.modifiedAt = modifiedAt;
-//    }
 }
