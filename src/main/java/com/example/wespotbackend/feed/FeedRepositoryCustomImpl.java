@@ -43,7 +43,7 @@ class FeedRepositoryCustomImpl implements FeedRepositoryCustom {
     }
 
     private BooleanExpression loeFeedId(Long feedId) {
-        if (feedId == null) {
+        if (feedId == null || feedId == 0) {
             return null;
         }
 
