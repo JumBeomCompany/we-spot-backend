@@ -35,18 +35,18 @@ class FeedRepositoryCustomImpl implements FeedRepositoryCustom {
                 .from(feed)
                 .innerJoin(feed.user, user)
                 .where(
-                        loeFeedId(lastFeedId)
+                        ltFeedId(lastFeedId)
                 )
                 .orderBy(feed.id.desc())
                 .limit(pageSize)
                 .fetch();
     }
 
-    private BooleanExpression loeFeedId(Long feedId) {
+    private BooleanExpression ltFeedId(Long feedId) {
         if (feedId == null || feedId == 0) {
             return null;
         }
 
-        return feed.id.loe(feedId);
+        return feed.id.lt(feedId);
     }
 }
